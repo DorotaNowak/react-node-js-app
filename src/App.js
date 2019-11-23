@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+import {
+    Route,
+    NavLink,
+    HashRouter
+} from "react-router-dom";
+import Home from "./Home";
+import Contact from "./Contact";
+import Stuff from "./Stuff";
+import Bitcoin from "./Bitcoin";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+    render() {
+        return (
+            <HashRouter>
+                <div>
+                    <h1>Bitcoin</h1>
+                    <ul className="header">
+                        <li><NavLink exact to="/">Home</NavLink></li>
+                        <li><NavLink exact to="/stuff">Stuff</NavLink></li>
+                        <li><NavLink exact to="/contact">Contact</NavLink></li>
+                        <li><NavLink exact to="/bitcoin">Bitcoin</NavLink></li>
+                    </ul>
+                    <div className="content">
+                        <Route exact path="/" component={Home}/>
+                        <Route exact path="/stuff" component={Stuff}/>
+                        <Route exact path="/contact" component={Contact}/>
+                        <Route exact path="/bitcoin" component={Bitcoin}/>
+                    </div>
+                </div>
+            </HashRouter>);
+    }
 }
 
 export default App;
